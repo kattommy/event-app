@@ -1,9 +1,8 @@
 package com.project.eventapp.model;
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,7 +13,11 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private Date startDate;
+    @DateTimeFormat(pattern = "dd.MM.yyyy - hh:mm")
+    private Date creationDate;
+
+    @Column(length = 1000)
     private String description;
+
+    //TODO relacja z użytkownikiem, eventem
 }
