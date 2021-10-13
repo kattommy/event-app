@@ -1,4 +1,4 @@
-package com.project.eventapp.entity;
+package com.project.eventapp.model;
 
 import lombok.Data;
 
@@ -18,6 +18,5 @@ public class User {
     public String username;
     public String password;
     public String email;
-
 
 }
