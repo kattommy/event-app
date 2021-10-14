@@ -50,4 +50,10 @@ public class CommentController {
         commentRepository.save(editedComment);
         return new RedirectView("/comments");
     }
+
+    @PostMapping("/deleteComment/{id}")
+    public RedirectView postDeleteComment(@PathVariable("id") Long id){
+        commentRepository.deleteById(id);
+        return new RedirectView("/comments");
+    }
 }
