@@ -8,10 +8,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.GeneratedValue;
@@ -38,6 +35,20 @@ public class UserController {
     @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
         userRepository.save(user);
+        return new RedirectView("/users");
+    }
+
+    @GetMapping("/editUser/{id}")
+    public String getEditUser(Model model, @PathVariable("id") Long id) {
+        User userToEdit = userRepository.findById(id).orElse(null);
+        model.addAttribute("user", userToEdit);
+        return "editUser";
+    }
+
+    @PostMapping("/editUser/{id}")
+    public RedirectView postEditUser(@ModelAttribute User editedUser, @PathVariable("id") Long id) {
+        editedUser.setId(id);
+        userRepository.save(editedUser);
         return new RedirectView("/users");
     }
 }
