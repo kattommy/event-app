@@ -52,9 +52,10 @@ public class UserController {
         return new RedirectView("/users");
     }
   
-   @PostMapping("/deleteUser/{id}") // czy to {id} jest wymagane i jeśli tak to do czego bo trochę nie ogarniam
+   @PostMapping("/deleteUser/{id}")
     public RedirectView postDeleteUser(@PathVariable("id") Long id){
         userRepository.deleteById(id);
+        return new RedirectView("users");
     }
 
 }
