@@ -24,8 +24,8 @@ public class EventController {
         model.addAttribute("events", events);
         return "events";
     }
-  
-   @GetMapping("/addEvent")
+
+    @GetMapping("/addEvent")
     public String getAddEvent() {
         return "addEvent";
     }
@@ -35,6 +35,7 @@ public class EventController {
         eventRepository.save(event);
         return new RedirectView("/events");
 
+    }
 
     @GetMapping("/editEvent/{id}")
     public String getEditEvent(Model model, @PathVariable("id") Long id) {
