@@ -34,7 +34,6 @@ public class EventController {
     public RedirectView postAddEvent(@ModelAttribute("event") Event event) {
         eventRepository.save(event);
         return new RedirectView("/events");
-
     }
 
     @GetMapping("/editEvent/{id}")
@@ -49,6 +48,12 @@ public class EventController {
         editedEvent.setId(id);
         eventRepository.save(editedEvent);
         return new RedirectView("/events"); // na razie powrót do events
+    }
+
+    @PostMapping("/deleteEvent/{id}")
+    public RedirectView postDeleteEvent(@PathVariable("id") Long id){
+        eventRepository.deleteById(id);
+        return new RedirectView("/events");
     }
 
 }
