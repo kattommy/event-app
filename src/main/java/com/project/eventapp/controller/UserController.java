@@ -8,10 +8,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.GeneratedValue;
@@ -38,6 +35,11 @@ public class UserController {
     @PostMapping("/addUser")
     public RedirectView postAddUsers(@ModelAttribute("user") User user){
         userRepository.save(user);
+        return new RedirectView("/users");
+    }
+    @PostMapping("/deleteUser/{id}") // czy to {id} jest wymagane i jeśli tak to do czego bo trochę nie ogarniam
+    public RedirectView postDeleteUser(@PathVariable("id") Long id){
+        userRepository.deleteById(id);
         return new RedirectView("/users");
     }
 }
