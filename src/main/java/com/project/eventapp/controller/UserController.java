@@ -12,29 +12,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.GeneratedValue;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@AllArgsConstructor
+@RequestMapping("/users")
 public class UserController {
     private UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @GetMapping("/users")
+    @GetMapping
     public String getUsers(Model model){
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "users";
     }
+
+    @GetMapping("/addUser")
+    public String getAddUser() {
+        return "addUser";
+    }
+
     @PostMapping("/addUser")
-    public String postAddUsers(@ModelAttribute("user") User user){
+    public RedirectView postAddUsers(@ModelAttribute("user") User user){
         userRepository.save(user);
-        return "new-user";
+        return new RedirectView("/users");
     }
 }
 
