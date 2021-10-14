@@ -1,22 +1,31 @@
 package com.project.eventapp.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Data
 @Entity
-
+@Getter
+@Setter
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-    public String username;
-    public String password;
+
+    @Column(length = 30)
+    public String firstName;
+
+    @Column(length = 30)
+    public String lastName;
+
+    @Column(length = 50)
     public String email;
+
+    @Column(length = 30)
+    public String password;
+
+    //TODO relacja z eventami, komentarzami
 
 }
