@@ -37,10 +37,25 @@ public class UserController {
         userRepository.save(user);
         return new RedirectView("/users");
     }
-    @PostMapping("/deleteUser/{id}") // czy to {id} jest wymagane i jeśli tak to do czego bo trochę nie ogarniam
-    public RedirectView postDeleteUser(@PathVariable("id") Long id){
-        userRepository.deleteById(id);
+ 
+    @GetMapping("/editUser/{id}")
+    public String getEditUser(Model model, @PathVariable("id") Long id) {
+        User userToEdit = userRepository.findById(id).orElse(null);
+        model.addAttribute("user", userToEdit);
+        return "editUser";
+    }
+
+    @PostMapping("/editUser/{id}")
+    public RedirectView postEditUser(@ModelAttribute User editedUser, @PathVariable("id") Long id) {
+        editedUser.setId(id);
+        userRepository.save(editedUser);
         return new RedirectView("/users");
     }
+  
+   @PostMapping("/deleteUser/{id}") // czy to {id} jest wymagane i jeśli tak to do czego bo trochę nie ogarniam
+    public RedirectView postDeleteUser(@PathVariable("id") Long id){
+        userRepository.deleteById(id);
+    }
+
 }
 
