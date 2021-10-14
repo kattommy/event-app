@@ -36,5 +36,4 @@ public class EventController {
         return new RedirectView("/events");
     }
 
-
 }
