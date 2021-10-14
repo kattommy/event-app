@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public RedirectView postAddUsers(@ModelAttribute("user") User user){
+    public RedirectView postAddUser(@ModelAttribute("user") User user){
         userRepository.save(user);
         return new RedirectView("/users");
     }
