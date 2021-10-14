@@ -4,14 +4,10 @@ package com.project.eventapp.controller;
 import com.project.eventapp.model.User;
 import com.project.eventapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.persistence.GeneratedValue;
 import java.util.List;
 
 @Controller
