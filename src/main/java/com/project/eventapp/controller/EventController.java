@@ -17,7 +17,7 @@ public class EventController {
 
     private final EventRepository eventRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public String getEvents(Model model) {
         List<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
