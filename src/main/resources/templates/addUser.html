@@ -5,6 +5,27 @@
     <title>Dodaj Usera</title>
 </head>
 <body>
+<h1>Dodanie użyktownika</h1>
+<form method="post">
+    <div >
+        <label for="firstName" >Imie</label>
+        <input type="text"  name="firstName" id="firstName"/>
+    </div>
+    <div >
+        <label for="lastName" >Nazwisko</label>
+        <input type="text"  name="lastName" id="lastName"/>
+    </div>
+    <div >
+        <label for="email" >Email</label>
+        <input type="text"  name="email" id="email"/>
+    </div>
+    <div >
+        <label for="password" >Hasło</label>
+        <input type="text"  name="password" id="password"/>
+    </div>
 
+    <input type="submit" th:value="Dodaj">
+</form>
+<a th:href="@{/users/list}">Przejdź do listy</a>
 </body>
 </html>
