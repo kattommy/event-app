@@ -4,15 +4,13 @@ package com.project.eventapp.controller;
 import com.project.eventapp.model.User;
 import com.project.eventapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.persistence.GeneratedValue;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -20,7 +18,7 @@ import java.util.List;
 public class UserController {
     private UserRepository userRepository;
 
-    @GetMapping
+    @GetMapping("/list")
     public String getUsers(Model model){
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
@@ -32,10 +30,10 @@ public class UserController {
         return "addUser";
     }
 
-    @PostMapping("/addUser")
+    @PostMapping(value = "/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
         userRepository.save(user);
-        return new RedirectView("/users");
+        return new RedirectView("/users/list");
     }
  
     @GetMapping("/editUser/{id}")
@@ -45,18 +43,24 @@ public class UserController {
         return "editUser";
     }
 
-    @PostMapping("/editUser/{id}")
-    public RedirectView postEditUser(@ModelAttribute User editedUser, @PathVariable("id") Long id) {
+    @PostMapping(value = "/editUser/{id}")
+    public RedirectView postEditUser(@ModelAttribute("user") User editedUser, @PathVariable("id") Long id) {
         editedUser.setId(id);
         userRepository.save(editedUser);
-        return new RedirectView("/users");
-    }
-  
-   @PostMapping("/deleteUser/{id}")
-    public RedirectView postDeleteUser(@PathVariable("id") Long id){
-        userRepository.deleteById(id);
-        return new RedirectView("users");
+        return new RedirectView("/users/list");
     }
 
+    @GetMapping("/deleteUser/{id}")
+    public String getDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
+        User userToEdit = userRepository.findById(id).orElse(null);
+        return "deleteUser";
+    }
+
+    @PostMapping(value="/deleteUser/{id}")
+    public RedirectView postDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
+
+        userRepository.deleteById(id);
+        return new RedirectView("/users/list");
+    }
 }
 
