@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +57,6 @@ public class UserController {
 
     @PostMapping(value="/deleteUser/{id}")
     public RedirectView postDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
-
         userRepository.deleteById(id);
         return new RedirectView("/users/list");
     }
