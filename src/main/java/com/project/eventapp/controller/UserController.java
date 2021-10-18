@@ -51,14 +51,14 @@ public class UserController {
     }
 
     @GetMapping("/deleteUser/{id}")
-    public String getDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
-        User userToEdit = userRepository.findById(id).orElse(null);
+    public String getDeleteUser(Model model,@PathVariable("id") Long id) {
+        User userDelete = userRepository.getById(id);
+        model.addAttribute("user",userDelete);
         return "deleteUser";
     }
 
     @PostMapping(value="/deleteUser/{id}")
-    public RedirectView postDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
-
+    public RedirectView postDeleteUser(@PathVariable("id") Long id) {
         userRepository.deleteById(id);
         return new RedirectView("/users/list");
     }

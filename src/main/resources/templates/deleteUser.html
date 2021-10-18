@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DElETE</title>
+    <title>Delete</title>
 </head>
 <body>
-<h1>Usuwamy Uzytkownika</h1>
+<h1>Usuwamy użytkownika</h1>
 <form method="post">
-    Imie: <strong th:text="${user.firstName}" th:value="${user.firstName}"></strong>
-    Nazwisko: <strong th:text="${user.lastName}" th:value="${user.lastName}"></strong>
-
-    <input type="submit" th:value="Usuń">
+Imie: <strong th:text="${user.firstName}"></strong>
+Nazwisko:<strong th:text="${user.lastName}"></strong>
+    <input type="submit" value="Usuń">
 </form>
 </body>
 </html>
