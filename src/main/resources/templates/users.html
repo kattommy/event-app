@@ -6,17 +6,26 @@
 </head>
 <body>
 <h1>Lista Użytkowników</h1>
-<table>
-    <tr>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Email</th>
-    </tr>
-    <tr th:each="user: ${users}">
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.lastName}"></td>
-        <td th:text="${user.email}"></td>
-    </tr>
-</table>
+<form method="post">
+    <table>
+        <tr>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+
+        <tr th:each="user: ${users}">
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td><a th:href="@{'/users/editUser/{id}'(id=${user.id})}">Edytuj</a></td>
+            <td><a th:href="@{'/users/deleteUser/{id}'(id=${user.id})}"> Usuń</a></td>
+        </tr>
+    </table>
+</form>
+<hr>
+<a th:href="@{/users/addUser}">Dodaj użytkownika</a>
 </body>
 </html>

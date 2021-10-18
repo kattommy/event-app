@@ -5,25 +5,29 @@
     <title>Dodaj Usera</title>
 </head>
 <body>
+
+<h1>Dodanie użytkownika</h1>
 <form method="post">
-    <div>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email">
+    <div >
+        <label for="firstName" >Imie</label>
+        <input type="text"  name="firstName" id="firstName"/>
     </div>
-    <div>
-        <label for="firstName">Nazwa użytkownika</label>
-        <input type="text" id="firstName" name="firstName">
+    <div >
+        <label for="lastName" >Nazwisko</label>
+        <input type="text"  name="lastName" id="lastName"/>
     </div>
-    <div>
-        <label for="lastName">Nazwa użytkownika</label>
-        <input type="text" id="lastName" name="lastName">
+    <div >
+        <label for="email" >Email</label>
+        <input type="text"  name="email" id="email"/>
     </div>
-    <div>
-        <label for="password">Hasło</label>
-        <input type="text" id="password" name="password">
+    <div >
+        <label for="password" >Hasło</label>
+        <input type="text"  name="password" id="password"/>
     </div>
-    <input type="submit" value="Zapisz">
+
+    <input type="submit" value="Dodaj">
 </form>
-<a th:href="@{/user/users}">Users</a>
+<a th:href="@{/users/list}">Przejdź do listy</a>
+
 </body>
 </html>
