@@ -5,5 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Lista komenatrzy</h1>
+<form method="post">
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Treść</th>
+    </tr>
+    <tr th:each="comment: ${comments}">
+        <td th:text="${comment.getCreationDate()}"></td>
+        <td th:text="${comment.getDescription()}"></td>
+    </tr>
+</table>
+</form>
+<a th:href="@{/comments/addComment}">dodaj comenatrz</a>
 </body>
 </html>

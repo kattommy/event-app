@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Usuń komentarz</h1>
+<form method="post">
+    Data: <strong th:text="${comment.creationDate}" th:value="${comment.creationDate}"></strong>
+    Treść: <strong th:text="${comment.description}" th:value="${comment.description}"></strong>
+
+    <input type="submit" th:value="Usuń">
+</form>
+</body>
+</html>

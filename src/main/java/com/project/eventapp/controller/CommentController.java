@@ -1,6 +1,7 @@
 package com.project.eventapp.controller;
 
 import com.project.eventapp.model.Comment;
+import com.project.eventapp.model.User;
 import com.project.eventapp.repository.CommentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -49,6 +50,12 @@ public class CommentController {
         editedComment.setId(id);
         commentRepository.save(editedComment);
         return new RedirectView("/comments");
+    }
+
+    @GetMapping("/deleteComment/{id}")
+    public String getDeleteComment(@ModelAttribute("comment") Comment comment, @PathVariable("id") Long id) {
+        Comment commentToDelete = commentRepository.findById(id).orElse(null);
+        return "deleteComment";
     }
 
     @PostMapping("/deleteComment/{id}")

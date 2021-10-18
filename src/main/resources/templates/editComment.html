@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post">
+    <div >
+        <label for="creationDate" >Data edycji</label>
+        <input type="text" th:id="${comment.getId()}" th:value="${comment.creationDate}" name="creationDate" id="creationDate"/>
+    </div>
+    <div >
+        <label for="description" >Treść</label>
+        <input type="text"  th:value="${comment.description}" name="description" id="description"/>
+    </div>
 
+    <input type="submit" th:value="Edytuj">
+</form>
 </body>
 </html>
