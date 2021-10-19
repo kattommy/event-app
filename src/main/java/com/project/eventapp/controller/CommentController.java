@@ -1,7 +1,7 @@
 package com.project.eventapp.controller;
 
 import com.project.eventapp.model.Comment;
-import com.project.eventapp.repository.CommentRepository;
+import com.project.eventapp.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +17,11 @@ import java.util.List;
 @Controller
 public class CommentController {
 
-    private final CommentRepository commentRepository;
+    private final CommentService commentService;
 
     @GetMapping("/comments")
     public String getComments(Model model) {
-        List<Comment> comments = commentRepository.findAll();
+        List<Comment> comments = commentService.findAllComments();
         model.addAttribute("comments", comments);
         return "comments";
     }
@@ -33,13 +33,13 @@ public class CommentController {
 
     @PostMapping("/addComment")
     public RedirectView postAddComment(@ModelAttribute("comment") Comment comment) {
-        commentRepository.save(comment);
+        commentService.saveComment(comment);
         return new RedirectView("/comments");
     }
 
     @GetMapping("/editComment/{id}")
     public String getEditComment(Model model, @PathVariable("id") Long id) {
-        Comment commentToEdit = commentRepository.findById(id).orElse(null);
+        Comment commentToEdit = commentService.findCommentById(id);
         model.addAttribute("comment", commentToEdit);
         return "editComment";
     }
@@ -47,13 +47,13 @@ public class CommentController {
     @PostMapping("/editComment/{id}")
     public RedirectView postEditComment(@ModelAttribute Comment editedComment, @PathVariable("id") Long id) {
         editedComment.setId(id);
-        commentRepository.save(editedComment);
+        commentService.saveComment(editedComment);
         return new RedirectView("/comments");
     }
 
     @PostMapping("/deleteComment/{id}")
     public RedirectView postDeleteComment(@PathVariable("id") Long id){
-        commentRepository.deleteById(id);
+        commentService.deleteCommentById(id);
         return new RedirectView("/comments");
     }
 }

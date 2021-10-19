@@ -2,10 +2,9 @@ package com.project.eventapp.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,14 +18,12 @@ public class Event {
     @Column(length = 100)
     private String name;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy - hh:mm")
-    private Date startDateTime;
+    private LocalDateTime startDateTime;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy - hh:mm")
-    private Date endDateTime;
+    private LocalDateTime endDateTime;
 
     @Column(length = 30)
-    private String location; //zdalnie / miasto
+    private String location;
 
     @Column(length = 1000)
     private String description;

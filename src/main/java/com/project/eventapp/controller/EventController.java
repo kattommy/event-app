@@ -49,6 +49,13 @@ public class EventController {
         return new RedirectView("/events"); // na razie powrót do events
     }
 
+    @GetMapping("/deleteEvent/{id}")
+    public String getDeleteEvent(Model model, @PathVariable("id") Long id) {
+        Event eventToDelete = eventRepository.findById(id).orElse(null);
+        model.addAttribute("event", eventToDelete);
+        return "deleteEvent";
+    }
+
     @PostMapping("/deleteEvent/{id}")
     public RedirectView postDeleteEvent(@PathVariable("id") Long id){
         eventService.deleteById(id);
