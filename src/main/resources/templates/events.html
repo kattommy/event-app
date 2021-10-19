@@ -2,8 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista dostępnych wydarzeń</title>
 </head>
 <body>
+
+<h1>Lista dostępnych wydarzeń:</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nazwa wydarzenia</th>
+        <th>Data startu</th>
+        <th>Data zakończenia</th>
+        <th>Lokalizacja</th>
+        <th>Opis wydarzenia</th>
+        <th>Edycja wydarzenia</th>
+    </tr>
+    <tr th:each="event: ${events}">
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.name}"></td>
+        <td th:text="${event.startDateTime}"></td> <!-- FIXME -->
+        <td th:text="${event.endDateTime}"></td> <!-- FIXME -->
+        <td th:text="${event.location}"></td>
+        <td th:text="${event.description}"></td>
+        <td><a th:href="@{/events/editEvent/{id}(id=${event.id})}">Edytuj</a></td>
+    </tr>
+</table>
+<a th:href="@{/events/addEvent}">Dodaj wydarzenie</a>
 </body>
 </html>
