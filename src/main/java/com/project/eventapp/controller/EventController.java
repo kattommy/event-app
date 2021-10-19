@@ -37,7 +37,7 @@ public class EventController {
 
     @GetMapping("/editEvent/{id}")
     public String getEditEvent(Model model, @PathVariable("id") Long id) {
-        Event eventToEdit = eventService.findEventById(id).orElse(null);
+        Event eventToEdit = eventService.findEventById(id);
         model.addAttribute("event", eventToEdit);
         return "editEvent";
     }
@@ -51,7 +51,7 @@ public class EventController {
 
     @GetMapping("/deleteEvent/{id}")
     public String getDeleteEvent(Model model, @PathVariable("id") Long id) {
-        Event eventToDelete = eventRepository.findById(id).orElse(null);
+        Event eventToDelete = eventService.findEventById(id);
         model.addAttribute("event", eventToDelete);
         return "deleteEvent";
     }
