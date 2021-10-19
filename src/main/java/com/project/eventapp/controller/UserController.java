@@ -3,6 +3,7 @@ package com.project.eventapp.controller;
 
 import com.project.eventapp.model.User;
 import com.project.eventapp.repository.UserRepository;
+import com.project.eventapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/users")
 public class UserController {
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping
     public String getUsers(Model model){
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.getUsers();
         model.addAttribute("users", users);
         return "users";
     }
@@ -30,13 +31,14 @@ public class UserController {
 
     @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
-        userRepository.save(user);
+
+        userService.saveUser(user);
         return new RedirectView("/users");
     }
  
     @GetMapping("/editUser/{id}")
     public String getEditUser(Model model, @PathVariable("id") Long id) {
-        User userToEdit = userRepository.findById(id).orElse(null);
+        User userToEdit = userService.findUserById(id);
         model.addAttribute("user", userToEdit);
         return "editUser";
     }
@@ -44,20 +46,20 @@ public class UserController {
     @PostMapping("/editUser/{id}")
     public RedirectView postEditUser(@ModelAttribute("user") User editedUser, @PathVariable("id") Long id) {
         editedUser.setId(id);
-        userRepository.save(editedUser);
+        userService.saveUser(editedUser);
         return new RedirectView("/users");
     }
 
     @GetMapping("/deleteUser/{id}")
     public String getDeleteUser(Model model,@PathVariable("id") Long id) {
-        User userDelete = userRepository.getById(id);
+        User userDelete = userService.findUserById(id);
         model.addAttribute("user",userDelete);
         return "deleteUser";
     }
 
     @PostMapping("/deleteUser/{id}")
     public RedirectView postDeleteUser(@PathVariable("id") Long id) {
-        userRepository.deleteById(id);
+        userService.deleteUserById(id);
         return new RedirectView("/users");
     }
 }
