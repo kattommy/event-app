@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/users")
 public class UserController {
-    private UserRepository userRepository;
     private UserService userService;
 
     @GetMapping
