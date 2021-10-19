@@ -32,7 +32,7 @@ public class UserController {
     @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
         userRepository.save(user);
-        return new RedirectView("/users/list");
+        return new RedirectView("/users");
     }
  
     @GetMapping("/editUser/{id}")
