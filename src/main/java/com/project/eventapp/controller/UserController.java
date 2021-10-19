@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -32,7 +31,7 @@ public class UserController {
     @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
         userRepository.save(user);
-        return new RedirectView("/users/list");
+        return new RedirectView("/users");
     }
  
     @GetMapping("/editUser/{id}")
