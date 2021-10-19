@@ -21,8 +21,8 @@
     <tr th:each="event: ${events}">
         <td th:text="${event.id}"></td>
         <td th:text="${event.name}"></td>
-        <td th:text="${event.startDateTime}"></td> <!-- FIXME -->
-        <td th:text="${event.endDateTime}"></td> <!-- FIXME -->
+        <td th:text="${#temporals.format(event.startDateTime, 'dd.MM.yyyy - HH:mm')}"></td>
+        <td th:text="${#temporals.format(event.endDateTime, 'dd.MM.yyyy - HH:mm')}"></td>
         <td th:text="${event.location}"></td>
         <td th:text="${event.description}"></td>
         <td><a th:href="@{/events/editEvent/{id}(id=${event.id})}">Edytuj</a></td>
