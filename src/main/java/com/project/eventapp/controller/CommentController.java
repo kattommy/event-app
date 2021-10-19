@@ -51,6 +51,13 @@ public class CommentController {
         return new RedirectView("/comments");
     }
 
+    @GetMapping("/deleteComment/{id}")
+    public String getDeleteComment(Model model, @PathVariable("id") Long id) {
+        Comment commentToDelete = commentService.findCommentById(id);
+        model.addAttribute(commentToDelete);
+        return "deleteComment";
+    }
+
     @PostMapping("/deleteComment/{id}")
     public RedirectView postDeleteComment(@PathVariable("id") Long id){
         commentService.deleteCommentById(id);
