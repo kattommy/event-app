@@ -31,7 +31,7 @@ public class EventController {
 
     @PostMapping("/addEvent")
     public RedirectView postAddEvent(@ModelAttribute("event") Event event) {
-        eventService.saveEvents(event);
+        eventService.saveEvent(event);
         return new RedirectView("/events");
     }
 
@@ -45,7 +45,7 @@ public class EventController {
     @PostMapping("/editEvent/{id}")
     public RedirectView postEditEvent(@ModelAttribute Event editedEvent, @PathVariable("id") Long id) {
         editedEvent.setId(id);
-       eventService.saveEvents(editedEvent);
+       eventService.saveEvent(editedEvent);
         return new RedirectView("/events"); // na razie powrót do events
     }
 
