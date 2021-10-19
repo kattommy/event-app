@@ -31,6 +31,7 @@ public class UserController {
 
     @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
+
         userService.saveUser(user);
         return new RedirectView("/users");
     }
