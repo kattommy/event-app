@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<form method="post" th:action="@{/comments/editComment/{id}(id=${comment.id})}">>
 
+<!--    <div>-->
+<!--        <label for="creationDate">Data dodania:</label>-->
+<!--        <input id="creationDate" type="datetime-local" th:value="${comment.creationDate}" name="creationDate">-->
+<!--    </div>-->
+    <div >
+        <label for="description" >Treść</label>
+        <input type="text"  th:value="${comment.description}" name="description" id="description"/>
+    </div>
+
+    <input type="submit" th:value="Dodaj">
+</form>
 </body>
 </html>

@@ -2,8 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista komentarzy</title>
 </head>
 <body>
+<h1>Lista komenatrzy</h1>
+<form method="post">
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Treść</th>
+        </tr>
+        <tr th:each="comment: ${comments}">
+            <td th:text="${#temporals.format(comment.getCreationDate(), 'dd.MM.yyyy - HH:mm')}"></td>
+            <td th:text="${comment.getDescription()}"></td>
+            <td><a th:href="@{'/comments/editComment/{id}'(id=${comment.id})}">Edytuj</a></td>
+            <td><a th:href="@{'/comments/deleteComment/{id}'(id=${comment.id})}"> Usuń</a></td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/comments/addComment}">dodaj komenatrz</a>
 </body>
 </html>

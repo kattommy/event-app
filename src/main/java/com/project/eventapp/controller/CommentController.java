@@ -5,21 +5,19 @@ import com.project.eventapp.repository.CommentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Controller
+@RequestMapping("/comments")
 public class CommentController {
 
     private final CommentRepository commentRepository;
 
-    @GetMapping("/comments")
+    @GetMapping
     public String getComments(Model model) {
         List<Comment> comments = commentRepository.findAll();
         model.addAttribute("comments", comments);
@@ -50,7 +48,12 @@ public class CommentController {
         commentRepository.save(editedComment);
         return new RedirectView("/comments");
     }
-
+    @GetMapping("/deleteComment/{id}")
+    public String getDeleteComment(Model model,@PathVariable("id") Long id) {
+        Comment commentDelete = commentRepository.getById(id);
+        model.addAttribute("comment",commentDelete);
+        return "deleteComment";
+    }
     @PostMapping("/deleteComment/{id}")
     public RedirectView postDeleteComment(@PathVariable("id") Long id){
         commentRepository.deleteById(id);

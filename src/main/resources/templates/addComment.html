@@ -5,5 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Dodaj komentarz</h1>
+<form method="post">
+
+<!--    <div>-->
+<!--        <label for="creationDate">Data dodania:</label>-->
+<!--        <input id="creationDate" type="datetime-local" name="creationDate">-->
+<!--    </div>-->
+    <div>
+        <label for="description">Treść</label>
+        <input type="text" id="description" name="description">
+    </div>
+    <input type="submit" th:value="zapisz">
+</form>
+<a th:href="@{/comments}">Lista komentarzy</a>
 </body>
 </html>
