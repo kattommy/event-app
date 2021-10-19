@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +17,7 @@ import java.util.Optional;
 public class UserController {
     private UserRepository userRepository;
 
-    @GetMapping("/list")
+    @GetMapping
     public String getUsers(Model model){
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
@@ -30,7 +29,7 @@ public class UserController {
         return "addUser";
     }
 
-    @PostMapping(value = "/addUser")
+    @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user){
         userRepository.save(user);
         return new RedirectView("/users/list");
@@ -43,24 +42,24 @@ public class UserController {
         return "editUser";
     }
 
-    @PostMapping(value = "/editUser/{id}")
+    @PostMapping("/editUser/{id}")
     public RedirectView postEditUser(@ModelAttribute("user") User editedUser, @PathVariable("id") Long id) {
         editedUser.setId(id);
         userRepository.save(editedUser);
-        return new RedirectView("/users/list");
+        return new RedirectView("/users");
     }
 
     @GetMapping("/deleteUser/{id}")
-    public String getDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
-        User userToEdit = userRepository.findById(id).orElse(null);
+    public String getDeleteUser(Model model,@PathVariable("id") Long id) {
+        User userDelete = userRepository.getById(id);
+        model.addAttribute("user",userDelete);
         return "deleteUser";
     }
 
-    @PostMapping(value="/deleteUser/{id}")
-    public RedirectView postDeleteUser(@ModelAttribute("user") User editedUser,@PathVariable("id") Long id) {
-
+    @PostMapping("/deleteUser/{id}")
+    public RedirectView postDeleteUser(@PathVariable("id") Long id) {
         userRepository.deleteById(id);
-        return new RedirectView("/users/list");
+        return new RedirectView("/users");
     }
 }
 
