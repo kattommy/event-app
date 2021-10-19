@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dodaj nowe wydarzenie</title>
 </head>
 <body>
+
+<h1>Dodaj nowe wydarzenie:</h1>
+
+<form method="post" th:action="@{/events/addEvent}">
+
+    <div>
+        <label for="name">Nazwa wydarzenia:</label>
+        <input id="name" type="text" name="name">
+    </div>
+
+    <div>
+        <label for="startDateTime">Data rozpoczęcia:</label>
+        <input id="startDateTime" type="datetime-local" name="startDateTime">
+    </div>
+
+    <div>
+        <label for="endDateTime">Data zakończenia:</label>
+        <input id="endDateTime" type="datetime-local" name="endDateTime">
+    </div>
+
+    <div>
+        <label for="location">Lokalizacja:</label>
+        <input id="location" type="text" name="location">
+    </div>
+
+    <div>
+        <label for="description">Opis wydarzenia:</label>
+        <textarea id="description" rows="5" name="description"></textarea>
+    </div>
+
+    <input type="submit" value="Dodaj wydarzenie">
+</form>
+
+<a th:href="@{/events}">Lista wydarzeń</a>
 
 </body>
 </html>
