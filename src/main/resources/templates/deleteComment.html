@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Usuwanie komentarzy</title>
+
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
-
-<h1>Czy na pewno chcesz usunąć dany komentarz?</h1>
-
+<h1>Usuń komentarz</h1>
 <form method="post">
-<div>
-    Data dodania komentarza: <p th:text="${#temporals.format(comment.creationDate, 'dd.MM.yyyy - HH:mm')}"></p> <!--FIXME trzeba sprawdzić, czy działa, jak powstaną widoki Comment-->
-    Treść komentarza: <p th:text="${comment.description}"></p>
-</div>
-    <input type="submit" value="Usuń">
+  Data: <strong th:text="${#temporals.format(comment.getCreationDate(), 'dd.MM.yyyy - HH:mm')}" th:value="${comment.creationDate}"></strong>
+  Treść: <strong th:text="${comment.description}" th:value="${comment.description}"></strong>
+
+  <input type="submit" th:value="Usuń">
 </form>
-
-<a th:href="@{/comments}">Lista komentarzy</a>
-
-
+  
+  <a th:href="@{/comments}">Lista komentarzy</a>
+  
 </body>
 </html>
+
