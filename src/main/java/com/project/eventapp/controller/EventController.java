@@ -21,12 +21,12 @@ public class EventController {
     public String getEvents(Model model) {
         List<Event> events = eventService.getAllEvents();
         model.addAttribute("events", events);
-        return "events";
+        return "event/events";
     }
 
     @GetMapping("/addEvent")
     public String getAddEvent() {
-        return "addEvent";
+        return "event/addEvent";
     }
 
     @PostMapping("/addEvent")
@@ -39,7 +39,7 @@ public class EventController {
     public String getEditEvent(Model model, @PathVariable("id") Long id) {
         Event eventToEdit = eventService.findEventById(id);
         model.addAttribute("event", eventToEdit);
-        return "editEvent";
+        return "event/editEvent";
     }
 
     @PostMapping("/editEvent/{id}")
@@ -53,7 +53,7 @@ public class EventController {
     public String getDeleteEvent(Model model, @PathVariable("id") Long id) {
         Event eventToDelete = eventService.findEventById(id);
         model.addAttribute("event", eventToDelete);
-        return "deleteEvent";
+        return "event/deleteEvent";
     }
 
     @PostMapping("/deleteEvent/{id}")
