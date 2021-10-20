@@ -1,4 +1,5 @@
 package com.project.eventapp.model;
+
 import lombok.Getter;
 import lombok.Setter;
 

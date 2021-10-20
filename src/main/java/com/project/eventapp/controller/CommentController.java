@@ -57,7 +57,7 @@ public class CommentController {
     }
 
     @PostMapping("/deleteComment/{id}")
-    public RedirectView postDeleteComment(@PathVariable("id") Long id){
+    public RedirectView postDeleteComment(@PathVariable("id") Long id) {
         commentService.deleteCommentById(id);
         return new RedirectView("/comments");
     }
