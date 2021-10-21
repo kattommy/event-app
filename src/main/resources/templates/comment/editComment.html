@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: head('Edycja komentarzy')"></head>
 <body>
+<nav th:replace="fragments/navbar :: myNavbar"></nav>
+
 <form method="post" th:action="@{/comments/editComment/{id}(id=${comment.id})}">>
-
-    <div >
-        <label for="description" >Treść</label>
-        <input type="text"  th:value="${comment.description}" name="description" id="description"/>
-    </div>
-
-    <input type="submit" value="Dodaj">
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Treść</span>
+      <input type="text" id="description" th:value="${comment.description}" name="description" class="form-control"
+             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+   </div>
+   <button type="submit" class="btn btn-primary">Zapisz</button>
 </form>
-
+<hr>
+<span class="link">
 <a th:href="@{/comments}">Lista komentarzy</a>
+</span>
+<hr>
+<span class="link">
 <a th:href="@{/comments/addComment}">Dodaj komentarz</a>
-
+</span>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

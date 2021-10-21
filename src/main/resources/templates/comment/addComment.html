@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: head('Lista komentarzy')"></head>
 <body>
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
 
 <h1>Dodaj komentarz</h1>
 <form method="post">
-
-<!--    <div>-->
-<!--        <label for="creationDate">Data dodania:</label>-->
-<!--        <input id="creationDate" type="datetime-local" name="creationDate">-->
-<!--    </div>-->
-    <div>
-        <label for="description">Treść</label>
-        <input type="text" id="description" name="description">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Treść</span>
+        <input type="text" id="description" name="description" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
-    <input type="submit" th:value="zapisz">
+    <button type="submit" class="btn btn-primary">Zapisz</button>
 </form>
-  
+<span class="link">
 <a th:href="@{/comments}">Lista komentarzy</a>
-
+</span>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

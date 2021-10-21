@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
+<head th:replace="fragments/head :: head('Lista komentarzy')"></head>
 <body>
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
+
 <h1>Usuń komentarz</h1>
 <form method="post">
   Data: <strong th:text="${#temporals.format(comment.getCreationDate(), 'dd.MM.yyyy - HH:mm')}" th:value="${comment.creationDate}"></strong>
   Treść: <strong th:text="${comment.description}" th:value="${comment.description}"></strong>
 
-  <input type="submit" th:value="Usuń">
+  <button type="submit" class="btn btn-primary">Usuń</button>
 </form>
-  
+<span class="link">
   <a th:href="@{/comments}">Lista komentarzy</a>
-  
+</span>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
 
