@@ -21,5 +21,8 @@ public class Comment {
     @Column(length = 1000)
     private String description;
 
-    //TODO relacja z użytkownikiem, eventem
+    @ManyToOne
+    private Event event;
+    @ManyToOne
+    private User user;
 }

@@ -28,6 +28,8 @@ public class Event {
     @Column(length = 1000)
     private String description;
 
-    //TODO relacja z organizatorami, użytkownikami, zdjęcie(?)
+    @ManyToOne
+    private User user;
+
 
 }
