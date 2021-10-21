@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista komentarzy</title>
-</head>
+<head th:replace="fragments/head :: head('Lista komentarzy')"></head>
 <body>
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
 <h1>Lista komenatrzy</h1>
 <form method="post">
-    <table>
-        <tr>
-            <th>Data</th>
-            <th>Treść</th>
-        </tr>
-        <tr th:each="comment: ${comments}">
+    <table class="table">
+        <head>
+            <tr class="table-secondary">
+                <th>Data</th>
+                <th>Treść</th>
+            </tr>
+        </head>
+        <tbody>
+        <tr th:each="comment: ${comments}" class="table-primary">
             <td th:text="${#temporals.format(comment.getCreationDate(), 'dd.MM.yyyy - HH:mm')}"></td>
             <td th:text="${comment.getDescription()}"></td>
-            <td><a th:href="@{'/comments/editComment/{id}'(id=${comment.id})}">Edytuj</a></td>
-            <td><a th:href="@{'/comments/deleteComment/{id}'(id=${comment.id})}"> Usuń</a></td>
+            <td class="table-success"><a th:href="@{'/comments/editComment/{id}'(id=${comment.id})}">Edytuj</a></td>
+            <td class="table-danger"><a th:href="@{'/comments/deleteComment/{id}'(id=${comment.id})}"> Usuń</a></td>
         </tr>
+        </tbody>
     </table>
 </form>
+<span class="link">
 <a th:href="@{/comments/addComment}">dodaj komenatrz</a>
+</span>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
