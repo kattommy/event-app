@@ -22,12 +22,12 @@ public class UserController {
     public String getUsers(Model model) {
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
-        return "user/users";
+        return "display/users/allUsers";
     }
 
     @GetMapping("/addUser")
     public String getAddUser() {
-        return "user/addUser";
+        return "access/register";
     }
 
     @PostMapping("/addUser")
@@ -40,7 +40,7 @@ public class UserController {
     public String getEditUser(Model model, @PathVariable("id") Long id) {
         User userToEdit = userService.findUserById(id);
         model.addAttribute("user", userToEdit);
-        return "user/editUser";
+        return "manage/account/editUser";
     }
 
     @PostMapping("/editUser/{id}")
@@ -54,7 +54,7 @@ public class UserController {
     public String getDeleteUser(Model model, @PathVariable("id") Long id) {
         User userDelete = userService.findUserById(id);
         model.addAttribute("user", userDelete);
-        return "user/deleteUser";
+        return "manage/account/deleteUser";
     }
 
     @PostMapping("/deleteUser/{id}")

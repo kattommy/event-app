@@ -21,12 +21,12 @@ public class CommentController {
     public String getComments(Model model) {
         List<Comment> comments = commentService.findAllComments();
         model.addAttribute("comments", comments);
-        return "comment/comments";
+        return "display/comments/allComments";
     }
 
     @GetMapping("/addComment")
     public String getAddComment() {
-        return "comment/addComment";
+        return "manage/comments/addComment";
     }
 
     @PostMapping("/addComment")
@@ -39,7 +39,7 @@ public class CommentController {
     public String getEditComment(Model model, @PathVariable("id") Long id) {
         Comment commentToEdit = commentService.findCommentById(id);
         model.addAttribute("comment", commentToEdit);
-        return "comment/editComment";
+        return "manage/comments/editComment";
     }
 
     @PostMapping("/editComment/{id}")
@@ -53,7 +53,7 @@ public class CommentController {
     public String getDeleteComment(Model model, @PathVariable("id") Long id) {
         Comment commentToDelete = commentService.findCommentById(id);
         model.addAttribute("comment", commentToDelete);
-        return "comment/deleteComment";
+        return "manage/comments/deleteComment";
     }
 
     @PostMapping("/deleteComment/{id}")
