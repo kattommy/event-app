@@ -2,18 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Usuwanie użytkownika')"></head>
 <body>
-<nav th:replace="fragments/navbar :: myNavbar" ></nav>
-<h1>Usuwamy użytkownika</h1>
-<form method="post">
-Imie: <strong th:text="${user.firstName}"></strong>
-Nazwisko:<strong th:text="${user.lastName}"></strong>
-    <button type="submit" class="btn btn-primary">Usuń</button>
-</form>
-<hr>
-<span class="link">
+<nav th:replace="fragments/navbar :: myNavbar"></nav>
+<div class="container">
+   <h1>Usuwamy użytkownika</h1>
+   <form method="post">
+      Imie: <strong th:text="${user.firstName}"></strong>
+      Nazwisko:<strong th:text="${user.lastName}"></strong>
+      <button type="submit" class="btn btn-primary">Usuń</button>
+   </form>
+   <hr>
+   <span class="link">
     <a th:href="@{/users}"> Lista użytkowników </a>
 </span>
-
+</div>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
