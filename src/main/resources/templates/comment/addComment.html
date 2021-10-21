@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Home')"></head>
+<head th:replace="fragments/head :: head('Napisz komentarz')"></head>
 <body>
 <nav th:replace="fragments/navbar :: myNavbar"></nav>
 
-<br>
-    <h1 class="display-4">Dodaj komentarz</h1>
-<br>
+<h1 class="mt-5 display-4 text-center ">Dodaj komentarz</h1>
 
 
-<div class="container-fluid">
+<div class="mt-5 container-fluid ">
 <form class="form-floating" method="post">
         <label for="description">Treść</label>
         <textarea class="form-control" type="text" id="description" name="description" rows="3" placeholder="Napisz coś!!"> </textarea>
-    <input class="btn btn-secondary" type="submit" th:value="zapisz">
+    <input class="mt-2 btn btn-secondary" type="submit" th:value="zapisz">
 </form>
+    <a type="button" class="mt-2 btn btn-secondary" th:href="@{/comments}">Lista komentarzy</a>
 </div>
 
-<a th:href="@{/comments}">Lista komentarzy</a>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
