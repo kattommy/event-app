@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+<head th:replace="fragments/head :: head('Edycja użytkowników')"></head>
+
 <body>
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
 <h1>EDIT</h1>
 <form method="post">
-    <div>
-        <label for="firstName">Imie</label>
-        <input type="text" th:value="${user.firstName}" name="firstName" id="firstName"/>
-    </div>
-    <div>
-        <label for="lastName">Nazwisko</label>
-        <input type="text" th:value="${user.lastName}" name="lastName" id="lastName"/>
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="text" th:value="${user.email}" name="email" id="email"/>
-    </div>
-    <div>
-        <label for="password">Hasło</label>
-        <input type="text" th:value="${user.password}" name="password" id="password"/>
-    </div>
-    <div>
-        <label for="id"></label>
-        <input type="text" th:hidden="${user.getId()}" th:value="${user.getId()}" th:name="id" id="id"/>
-    </div>
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="firstName">Imie</span>
+      <input type="text" name="firstName" th:value="${user.firstName}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+   </div>
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="lastName">Nazwisko</span>
+      <input type="text" name="lastName" th:value="${user.lastName}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+   </div>
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="email">Email</span>
+      <input type="text" name="email" th:value="${user.email}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+   </div>
+   <div class="input-group mb-3">
+      <span class="input-group-text" id="password">Hasło</span>
+      <input type="text" name="password" th:value="${user.password}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+   </div>
 
-    <input type="submit" th:value="Zapisz">
+   <button type="submit" class="btn btn-primary">Zapisz</button>
 </form>
-
+<br><hr>
+<span class="link">
 <a th:href="@{/users}">Lista użytkowników</a>
+</span>
+<br><hr>
+<span class="link">
 <a th:href="@{/users/addUser}">Dodaj użytkownika</a>
-
+</span>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
+
 </html>
