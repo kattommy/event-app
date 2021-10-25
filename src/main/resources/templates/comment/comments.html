@@ -19,39 +19,6 @@
 
             <a type="button" class="mt-2 btn btn-secondary" th:href="@{'/comments/editComment/{id}'(id=${comment.id})}">Edytuj</a>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
-
-            <!--TODO edit comment view in modal -->
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <form method="post" th:action="@{/comments/editComment/{id}(id=${comment.id})}">
-                                <div >
-                                    <label for="descriptions" >Treść</label>
-                                    <input type="text"  th:value="${comment.description}" name="description" id="descriptions"/>
-                                </div>
-                                <input type="submit" value="Dodaj">
-                            </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <a type="button" class="mt-2 btn btn-secondary" th:href="@{'/comments/deleteComment/{id}'(id=${comment.id})}"> Usuń</a>
         </div>
 </form>
