@@ -22,8 +22,9 @@ public class UserService implements UserDetailsService {
     public User findUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
-    //TODO change name to updateUser()
-    public void updateUser(User userToSave) {
+
+    public void saveUser(User userToSave) {
+
         userRepository.save(userToSave);
     }
 
