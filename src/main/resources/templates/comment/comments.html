@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista komentarzy</title>
-</head>
+<head th:replace="fragments/head :: head('Home')"></head>
+
 <body>
-<h1>Lista komenatrzy</h1>
-<form method="post">
-    <table>
-        <tr>
-            <th>Data</th>
-            <th>Treść</th>
-        </tr>
-        <tr th:each="comment: ${comments}">
-            <td th:text="${#temporals.format(comment.getCreationDate(), 'dd.MM.yyyy - HH:mm')}"></td>
-            <td th:text="${comment.getDescription()}"></td>
-            <td><a th:href="@{'/comments/editComment/{id}'(id=${comment.id})}">Edytuj</a></td>
-            <td><a th:href="@{'/comments/deleteComment/{id}'(id=${comment.id})}"> Usuń</a></td>
-        </tr>
-    </table>
+
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
+
+<h1 class="mt-5 text-center display-4 ">Lista komenatrzy</h1>
+
+<form class="form-floating" method="post">
+        <div th:each="comment: ${comments}" class="container-fluid col p-5 my-5 border">
+
+            <label for="date"><strong>Data: </strong></label>
+            <div id="date" class="p-2 bg-light border" th:text="${#temporals.format(comment.getCreationDate(), 'dd.MM.yyyy - HH:mm')}"></div>
+
+            <label for="description"><strong>Opis: </strong></label>
+            <div id="description" class="p-2 bg-light border" th:text="${comment.getDescription()}"></div>
+
+            <a type="button" class="mt-2 btn btn-secondary" th:href="@{'/comments/editComment/{id}'(id=${comment.id})}">Edytuj</a>
+
+            <a type="button" class="mt-2 btn btn-secondary" th:href="@{'/comments/deleteComment/{id}'(id=${comment.id})}"> Usuń</a>
+        </div>
 </form>
-<a th:href="@{/comments/addComment}">dodaj komenatrz</a>
+
+<div class="container-fluid">
+    <a type="button" class="mt-2 btn btn-secondary" th:href="@{/comments/addComment}">dodaj komenatrz</a>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
