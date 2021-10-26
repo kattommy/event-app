@@ -32,6 +32,6 @@ public class CommentService {
     }
 
     public void findAllCommentsByEventsId(Event event){
-        commentRepository.findAllByEvent_Id(event.getId());
+        commentRepository.findAllByEvent_Id(event.getId()); 
     }
 }
