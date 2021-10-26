@@ -2,6 +2,7 @@ package com.project.eventapp.service;
 
 
 import com.project.eventapp.model.Event;
+import com.project.eventapp.model.User;
 import com.project.eventapp.repository.EventRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EventService {
     private final EventRepository repository;
-  
+
 
     public List<Event> getAllEvents() {
         return repository.findAll();
@@ -30,4 +31,7 @@ public class EventService {
         return repository.findById(id).orElse(null);
     }
 
+    public List<Event> findAllByUserId(User user){
+        return repository.findAllByUser_Id(user.getId());
+    }
 }
