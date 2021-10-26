@@ -23,7 +23,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public void saveUser(User userToSave) {
+    public void updateUser(User userToSave) {
 
         userRepository.save(userToSave);
     }
