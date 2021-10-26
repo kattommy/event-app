@@ -3,7 +3,6 @@ package com.project.eventapp.service;
 import com.project.eventapp.model.User;
 import com.project.eventapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void saveUser(User userToSave) {
+
         userRepository.save(userToSave);
     }
 
@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
         if(user.getId() != null){
             throw new IllegalArgumentException("Użytkownik o podanym ID już istnieje !!!");
         }
-        saveUser(user);
+        updateUser(user);
     }
 
     @Override
