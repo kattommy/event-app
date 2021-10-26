@@ -32,7 +32,7 @@ public class UserController {
 
     @PostMapping("/addUser")
     public RedirectView postAddUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+        userService.createUser(user);
         return new RedirectView("/users");
     }
 
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/editUser/{id}")
     public RedirectView postEditUser(@ModelAttribute("user") User editedUser, @PathVariable("id") Long id) {
         editedUser.setId(id);
-        userService.saveUser(editedUser);
+        userService.updateUser(editedUser);
         return new RedirectView("/users");
     }
 
