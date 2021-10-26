@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Zaloguj się</title>
-</head>
+<head th:replace="fragments/head :: head('Zaloguj się')"></head>
 <body>
 
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
+
+<div class="container-fluid alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}">
+ <strong>Niepoprawne dane logowania</strong>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="container-fluid col p-5 my-5 border">
+
 <form method="post" th:action="@{/login}">
-    <label>Użytkownik <input type="text" name="username"></label>
-    <label>Hasło <input type="password" name="password"></label>
-    <input type="submit" value="Zaloguj">
+    <div class="mb3">
+        <label for="email" class="form-label">Użytkownik</label>
+        <input class="form-control" type="text" name="email" id="email">
+    </div>
+    <div class="mb3">
+        <label for="password" class="form-label">Hasło</label>
+        <input class="form-control" type="password" name="password" id="password">
+    </div>
+    <input class="btn btn-dark mb5" type="submit" value="Zaloguj">
 </form>
 
-
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
