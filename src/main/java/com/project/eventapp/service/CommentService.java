@@ -1,6 +1,7 @@
 package com.project.eventapp.service;
 
 import com.project.eventapp.model.Comment;
+import com.project.eventapp.model.Event;
 import com.project.eventapp.repository.CommentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,9 @@ public class CommentService {
 
     public void deleteCommentById(Long id) {
         commentRepository.deleteById(id);
+    }
+
+    public void findAllCommentsByEventsId(Event event){
+        commentRepository.findAllByEvent_Id(event.getId()); 
     }
 }
