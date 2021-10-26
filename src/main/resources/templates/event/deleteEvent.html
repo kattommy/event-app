@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Usuń wydarzenie</title>
-</head>
+<head th:replace="fragments/head :: head('Usuń wydarzenie')"></head>
 <body>
+
+<nav th:replace="fragments/navbar :: myNavbar" ></nav>
 
 <h1>Usuń wydarzenie</h1>
 <form method="post">
@@ -17,5 +16,9 @@
     <input type="submit" value="Usuń">
 </form>
 <a th:href="@{/events}">Lista wydarzeń</a>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
+
 </body>
 </html>
