@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Zaloguj</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/login}">
+    <label>Użytkownik <input type="text" name="username"></label>
+    <label>Hasło <input type="password" name="password"></label>
+    <input type="submit" value="Zaloguj">
+</form>
+
+
+</body>
+</html>
