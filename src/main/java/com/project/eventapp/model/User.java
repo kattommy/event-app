@@ -2,31 +2,68 @@ package com.project.eventapp.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "`user`")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @Column(length = 30)
-    public String firstName;
+    private String firstName;
 
     @Column(length = 30)
-    public String lastName;
+    private String lastName;
 
     @Column(length = 50)
-    public String email;
+    private String email;
 
     @Column(length = 30)
-    public String password;
+    private String password;
 
-    //TODO relacja z eventami, komentarzami
+    @Column(length = 30)
+    private String role;
 
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
