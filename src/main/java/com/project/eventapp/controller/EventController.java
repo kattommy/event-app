@@ -74,6 +74,7 @@ public class EventController {
     //TODO fix me
     @GetMapping("/participants/{id}")
     public String getParticipants(@PathVariable("id")Long id){
+        eventService.getWithParticipantsById(id);
         return "participants";
     }
 
