@@ -77,4 +77,10 @@ public class EventController {
         return "participants";
     }
 
+    @GetMapping("/eventDetails/{id}")
+    public String getEventDetails(Model model, @PathVariable("id") Long id) {
+        Event eventToDisplay = eventService.getById(id);
+        model.addAttribute("event", eventToDisplay);
+        return "event/eventDetails";
+    }
 }
