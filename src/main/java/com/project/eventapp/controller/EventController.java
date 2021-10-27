@@ -19,7 +19,7 @@ public class EventController {
 
     @GetMapping
     public String getEvents(Model model) {
-        List<Event> events = eventService.getAllEvents();
+        List<Event> events = eventService.getAll();
         model.addAttribute("events", events);
         return "event/events";
     }
@@ -31,13 +31,13 @@ public class EventController {
 
     @PostMapping("/addEvent")
     public RedirectView postAddEvent(@ModelAttribute("event") Event event) {
-        eventService.saveEvent(event);
+        eventService.save(event);
         return new RedirectView("/events");
     }
 
     @GetMapping("/editEvent/{id}")
     public String getEditEvent(Model model, @PathVariable("id") Long id) {
-        Event eventToEdit = eventService.findEventById(id);
+        Event eventToEdit = eventService.getById(id);
         model.addAttribute("event", eventToEdit);
         return "event/editEvent";
     }
@@ -45,13 +45,13 @@ public class EventController {
     @PostMapping("/editEvent/{id}")
     public RedirectView postEditEvent(@ModelAttribute Event editedEvent, @PathVariable("id") Long id) {
         editedEvent.setId(id);
-        eventService.saveEvent(editedEvent);
+        eventService.save(editedEvent);
         return new RedirectView("/events"); // na razie powrót do events
     }
 
     @GetMapping("/deleteEvent/{id}")
     public String getDeleteEvent(Model model, @PathVariable("id") Long id) {
-        Event eventToDelete = eventService.findEventById(id);
+        Event eventToDelete = eventService.getById(id);
         model.addAttribute("event", eventToDelete);
         return "event/deleteEvent";
     }
@@ -60,6 +60,11 @@ public class EventController {
     public RedirectView postDeleteEvent(@PathVariable("id") Long id) {
         eventService.deleteById(id);
         return new RedirectView("/events");
+    }
+    //TODO fix me
+    @GetMapping("/participants/{id}")
+    public String getParticipants(@PathVariable("id")Long id){
+        return "participants";
     }
 
 }
