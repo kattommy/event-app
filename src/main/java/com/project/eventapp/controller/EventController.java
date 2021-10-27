@@ -1,7 +1,9 @@
 package com.project.eventapp.controller;
 
+import com.project.eventapp.model.Comment;
 import com.project.eventapp.model.Event;
 import com.project.eventapp.model.User;
+import com.project.eventapp.service.CommentService;
 import com.project.eventapp.service.EventService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,6 +20,7 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
+    private final CommentService commentService;
 
     @GetMapping
     public String getEvents(Model model) {
@@ -82,6 +85,8 @@ public class EventController {
     public String getEventDetails(Model model, @PathVariable("id") Long id) {
         Event eventToDisplay = eventService.getById(id);
         model.addAttribute("event", eventToDisplay);
+        List<Comment> allComments = commentService.findAllCommentsByEventsId(id);
+        model.addAttribute("comments", allComments);
         return "event/eventDetails";
     }
 }
