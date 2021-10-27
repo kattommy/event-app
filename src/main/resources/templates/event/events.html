@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: head('Lista wydarzeń')"></head>
 <body>
 
@@ -33,7 +33,7 @@
                 <span id="description" th:text="${event.description}"></span>
             </div>
 
-            <div id="edit-button">
+            <div sec:authorize="hasRole('ADMIN')" id="edit-button">
                 <a role="button" class="btn btn-warning btn-sm"
                    th:href="@{/events/editEvent/{id}(id=${event.id})}">Edytuj wydarzenie</a>
             </div>
@@ -46,9 +46,14 @@
                 <span id="participant" th:text="${participant.email}"></span>
             </div>
 
+            <div id="details-button">
+                <a role="button" class="btn btn-primary btn-sm"
+                   th:href="@{/events/eventDetails/{id}(id=${event.id})}">Szczegóły wydarzenia</a>
+            </div>
+
         </div>
 
-<div class="container-fluid p-5 bg-info text-white text-center">
+<div sec:authorize="hasRole('ADMIN')" class="container-fluid p-5 bg-info text-white text-center">
     <a role="button" th:href="@{/events/addEvent}" class="btn btn-primary btn-sm">Dodaj wydarzenie</a>
 </div>
 
