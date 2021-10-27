@@ -2,6 +2,7 @@ package com.project.eventapp.service;
 
 
 import com.project.eventapp.model.Event;
+import com.project.eventapp.model.User;
 import com.project.eventapp.repository.EventRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,7 @@ public class EventService {
     }
 
 
+    public List<Event> getAllPastByUser(User user) {
+        return repository.findAllPastByUser(user);
+    }
 }

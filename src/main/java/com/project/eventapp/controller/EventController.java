@@ -1,8 +1,10 @@
 package com.project.eventapp.controller;
 
 import com.project.eventapp.model.Event;
+import com.project.eventapp.model.User;
 import com.project.eventapp.service.EventService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,14 @@ public class EventController {
         model.addAttribute("events", events);
         return "event/events";
     }
+
+    @GetMapping("/past")
+    public String getEventsPast(Model model, @AuthenticationPrincipal User user) {
+        List<Event> events = eventService.getAllPastByUser(user);
+        model.addAttribute("eventsPast", events);
+        return "event/eventsPast";
+    }
+
 
     @GetMapping("/addEvent")
     public String getAddEvent() {

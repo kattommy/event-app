@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Lista wydarzeń')"></head>
+<body>
+
+<nav th:replace="fragments/navbar :: myNavbar"></nav>
+
+<div class="container-fluid p-5 bg-info text-white text-center">
+   <h1>Lista Minionych wydarzeń</h1>
+</div>
+
+<div th:each="event: ${eventsPast}" class="container p-5 my-5 border">
+   <h2 th:text="${event.name}"></h2>
+</div>
+
+
+<!--            <div>-->
+<!--                <label for="start"><strong>Start: </strong></label>-->
+<!--                <span id="start" th:text="${#temporals.format(event.startDateTime, 'dd.MM.yyyy - HH:mm')}"></span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="start"><strong>Start: </strong></label>-->
+<!--                <span id="user" th:text="${event.user.lastName}"></span>-->
+<!--            </div>-->
+
+<!--            <div>-->
+<!--                <label for="end"><strong>Koniec: </strong></label>-->
+<!--                <span id="end" th:text="${#temporals.format(event.endDateTime, 'dd.MM.yyyy - HH:mm')}"></span>-->
+<!--            </div>-->
+
+<!--            <div>-->
+<!--                <label for="location"><strong>Gdzie: </strong></label>-->
+<!--                <span id="location" th:text="${event.location}"></span>-->
+<!--            </div>-->
+
+<!--            <div>-->
+<!--                <label for="description"><strong>Opis wydarzenia: </strong></label>-->
+<!--                <span id="description" th:text="${event.description}"></span>-->
+<!--            </div>-->
+
+
+<!--        </div>-->
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
+
+</body>
+</html>
