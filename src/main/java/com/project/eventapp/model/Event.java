@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,7 +30,12 @@ public class Event {
     private String description;
 
     @ManyToOne
-    private User user;
+    private User organizer;
+
+    @ManyToMany
+    private Set<User> participants;
+
+
 
 
 }

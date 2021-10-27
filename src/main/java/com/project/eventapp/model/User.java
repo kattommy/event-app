@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,6 +36,10 @@ public class User implements UserDetails {
 
     @Column(length = 30)
     private String role;
+
+    @ManyToMany(mappedBy = "participants")
+    @OrderBy("startDateTime DESC")
+    private List<Event> participation;
 
 
     @Override

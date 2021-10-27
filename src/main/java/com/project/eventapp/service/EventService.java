@@ -12,13 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 public class EventService {
     private final EventRepository repository;
-  
 
-    public List<Event> getAllEvents() {
+
+    public List<Event> getAll() {
         return repository.findAll();
     }
 
-    public void saveEvent(Event event) {
+    public void save(Event event) {
         repository.save(event);
     }
 
@@ -26,8 +26,14 @@ public class EventService {
         repository.deleteById(id);
     }
 
-    public Event findEventById(Long id) {
+    public Event getById(Long id) {
         return repository.findById(id).orElse(null);
     }
+
+    public Event getWithParticipantsById(long id) {
+        return repository.findWithParticipantsById(id)
+                .orElseThrow(() -> new RuntimeException("brak eventu"));
+    }
+
 
 }
