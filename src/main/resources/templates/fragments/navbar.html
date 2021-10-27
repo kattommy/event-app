@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+   <meta charset="UTF-8">
+   <title>Title</title>
 </head>
 <body>
-<nav th:fragment = "myNavbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">HOME</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}">Strona główna</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Użytkownicy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/events}">Event's</a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link active" aria-current="page" th:href="@{/events/past}">Zakończone wydarzenia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/comments}">Komentarze</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Autorzy projektu ;)
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Katarzyna</a></li>
-                        <li><a class="dropdown-item" href="#">Monika</a></li>
-                        <li><a class="dropdown-item" href="#">Jan</a></li>
-                        <li><a class="dropdown-item" href="#">Maciej</a></li>
-                        <li><a class="dropdown-item" href="#">Paweł</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
+<nav th:fragment="myNavbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+   <div class="container-fluid">
+      <a class="navbar-brand" href="#">HOME</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" th:href="@{/}">Strona główna</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" th:href="@{/users}">Użytkownicy</a>
+            </li>
+
+            <li class="nav-item dropdown">
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" ></a>
+            </li>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+               Event's
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+               <li><a class="dropdown-item" th:href="@{/events}">Lista wszystkich eventów</a></li>
+               <li><a class="dropdown-item" th:href="@{events/past}">Eventy które były</a></li>
+               <li><a class="dropdown-item" href="#">Eventy które będą</a></li>
+
             </ul>
-            <div sec:authorize="isAuthenticated()" class="d-flex">
-                Zalogowano jako&nbsp;<span sec:authentication="name"></span>
-                <form method="post" th:action="@{/logout}">
-                    <button type="submit" class="btn btn-dark">Wyloguj</button>
-                </form>
-            </div>
-        </div>
-    </div>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+               <a class="nav-link active" aria-current="page" th:href="@{/events/past}">Zakończone wydarzenia</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" th:href="@{/comments}">Komentarze</a>
+            </li>
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Autorzy projektu ;)
+               </a>
+               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Katarzyna</a></li>
+                  <li><a class="dropdown-item" href="#">Monika</a></li>
+                  <li><a class="dropdown-item" href="#">Jan</a></li>
+                  <li><a class="dropdown-item" href="#">Maciej</a></li>
+                  <li><a class="dropdown-item" href="#">Paweł</a></li>
+               </ul>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link disabled">Disabled</a>
+            </li>
+         </ul>
+         <div sec:authorize="isAuthenticated()" class="d-flex">
+            Zalogowano jako&nbsp;<span sec:authentication="name"></span>
+            <form method="post" th:action="@{/logout}">
+               <button type="submit" class="btn btn-dark">Wyloguj</button>
+            </form>
+         </div>
+      </div>
+   </div>
 </nav>
 
 </body>
