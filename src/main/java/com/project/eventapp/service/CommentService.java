@@ -31,7 +31,7 @@ public class CommentService {
         commentRepository.deleteById(id);
     }
 
-    public void findAllCommentsByEventsId(Event event){
-        commentRepository.findAllByEvent_Id(event.getId()); 
+    public List<Comment> findAllCommentsByEventsId(Event event){
+        return commentRepository.findAllByEvent_Id(event.getId());
     }
 }

@@ -6,7 +6,7 @@
 
 <nav th:replace="fragments/navbar :: myNavbar" ></nav>
 
-<h1 class="mt-5 text-center display-4 ">Lista komenatrzy</h1>
+<h1 class="mt-5 text-center display-4 ">Lista komentarzy</h1>
 
 <form class="form-floating" method="post">
         <div th:each="comment: ${comments}" class="container-fluid col p-5 my-5 border">
@@ -24,7 +24,7 @@
 </form>
 
 <div class="container-fluid">
-    <a type="button" class="mt-2 btn btn-secondary" th:href="@{/comments/addComment}">dodaj komenatrz</a>
+    <a type="button" class="mt-2 btn btn-secondary" th:href="@{/comments/addComment}">dodaj komentarz</a>
 </div>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script th:replace="fragments/scripts :: scripts"></script>

@@ -24,7 +24,6 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateUser(User userToSave) {
-
         userRepository.save(userToSave);
     }
 
