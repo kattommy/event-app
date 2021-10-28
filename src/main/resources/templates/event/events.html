@@ -41,6 +41,7 @@
             <div class="mt-2">
                 <strong>Użytkownicy zapisani na wydarzenie:</strong>
             </div>
+
             <div th:each="participant: ${event.participants}">
                 <label for="participant">Nazwa użytkownika:</label>
                 <span id="participant" th:text="${participant.email}"></span>
