@@ -76,16 +76,10 @@ public class EventController {
         eventService.deleteById(id);
         return new RedirectView("/events");
     }
-    //FIXME dostosować do widoku szczegółów
-    @GetMapping("/participants/{id}")
-    public String getParticipants(@PathVariable("id")Long id){
-        eventService.getWithParticipantsById(id);
-        return "participants";
-    }
 
     @GetMapping("/eventDetails/{id}")
     public String getEventDetails(Model model, @PathVariable("id") Long id) {
-        Event eventToDisplay = eventService.getById(id);
+        Event eventToDisplay = eventService.getWithParticipantsById(id);
         model.addAttribute("event", eventToDisplay);
         List<Comment> allComments = commentService.findAllCommentsByEventsId(id);
         model.addAttribute("comments", allComments);

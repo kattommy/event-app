@@ -2,14 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Home')"></head>
 <body>
+<body>
+<div class="container-fluid alert alert-success alert-dismissible fade show" role="alert" th:if="${param.registered}">
+   <strong>Zarejestrowano użytkownika!</strong>
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <!-- Navbar Section -->
 <nav th:replace="fragments/navbar :: myNavbar"></nav>
 
 <div class="container">
    <h1>Strona główna</h1>
-   <p> Tak coś tu trzeba wystawić na stronie głównej tylko co ? Może Event info...opis?</p>
+   <h2 class="mt-5 text-center display-4 ">Najnowsze wydarzenia</h2>
 
-   <a th:href="@{/login}">Zaloguj</a>
 </div>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script th:replace="fragments/scripts :: scripts"></script>
