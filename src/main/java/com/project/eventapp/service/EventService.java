@@ -49,7 +49,11 @@ public class EventService {
     public void saveParticipantForAnEvent(User user, Event event) {
         event.getParticipants().add(user);
         repository.save(event);
-
-        }
     }
+
+    public void deleteParticipantFrom(User user, Event event) {
+        event.removeParticipant(user);
+        repository.save(event);
+    }
+}
 

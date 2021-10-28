@@ -98,6 +98,11 @@ public class EventController {
         Event event = eventService.getById(eventId);
         eventService.saveParticipantForAnEvent(user, event);
         return "redirect:/events/eventDetails/" + eventId + "/?saved";
-
+    }
+    @PostMapping("/deleteParticipant/forEvent/{id}")
+    public String postDeleteParticipant(@AuthenticationPrincipal User user, @PathVariable("id") Long id){
+        Event event = eventService.getById(id);
+        eventService.deleteParticipantFrom(user,event);
+        return "redirect:/events/eventDetails/" + id + "/?deleted";
     }
 }

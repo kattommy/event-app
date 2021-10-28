@@ -13,6 +13,10 @@
     <strong>Zapisano na wydarzenie!</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+<div class="container-fluid alert alert-success alert-dismissible fade show text-center text-success" role="alert" th:if="${param.deleted}">
+    <strong>Usunięto z wydarzenia!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 
 <div class="container p-5 my-5 border">
 
@@ -56,6 +60,11 @@
     <div sec:authorize="isAuthenticated()" id="signup-button">
         <form method="post" th:action="@{/events/saveParticipant/forEvent/{eventId}(eventId=${event.id})}">
         <input role="button" type="submit" class="btn btn-warning btn-sm" value="Zapisz się">
+        </form>
+    </div>
+    <div sec:authorize="isAuthenticated()" id="resign-button">
+        <form method="post" th:action="@{/events/deleteParticipant/forEvent/{id}(id=${event.id})}">
+        <input role="button" type="submit" class="btn btn-warning btn-sm" value="Zrezygnuj">
         </form>
     </div>
 

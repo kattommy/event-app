@@ -35,7 +35,7 @@ public class Event {
     @ManyToMany
     private Set<User> participants;
 
-
-
-
+    public void removeParticipant(User user) {
+        participants.remove(user);
+    }
 }
