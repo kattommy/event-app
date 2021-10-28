@@ -5,6 +5,7 @@ import com.project.eventapp.model.Event;
 import com.project.eventapp.model.User;
 import com.project.eventapp.service.CommentService;
 import com.project.eventapp.service.EventService;
+import com.project.eventapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class EventController {
 
     private final EventService eventService;
     private final CommentService commentService;
+    private final UserService userService;
 
     @GetMapping
     public String getEvents(Model model) {
@@ -82,5 +84,12 @@ public class EventController {
         List<Comment> allComments = commentService.findAllCommentsByEventsId(id);
         model.addAttribute("comments", allComments);
         return "event/eventDetails";
+    }
+
+    @PostMapping("/saveParticipant/forEvent/{eventId}")
+    public String postSaveParticipant(@AuthenticationPrincipal User user, @PathVariable("eventId") Long eventId) {
+        Event event = eventService.getById(eventId);
+        eventService.saveParticipantForAnEvent(user, event);
+        return "redirect:/events/eventDetails/" + eventId + "/?saved";
     }
 }
