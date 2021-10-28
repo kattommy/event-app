@@ -40,4 +40,9 @@ public class EventService {
     public List<Event> getAllPastByUser(User user) {
         return repository.findAllPastByUser(user);
     }
+
+    public void saveParticipantForAnEvent(User user, Event event) {
+        event.getParticipants().add(user);
+        repository.save(event);
+    }
 }
