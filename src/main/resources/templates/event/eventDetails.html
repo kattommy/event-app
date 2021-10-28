@@ -47,9 +47,18 @@
     </div>
 
     <div>
-        <label for="comments"><strong>Komentarze: </strong></label>
-        <div th:each="comment: ${comments}">
-        <span id="comments" th:text="${comment.description}"></span>
+        <strong>Komentarze: </strong>
+            <div th:each="comment: ${comments}" class="container">
+                <div>
+                    <label for="author"><strong>Autor: </strong></label>
+                    <span id="author" th:text="${comment.user.firstName}"></span>
+                    <label for="date"><strong>Data dodania: </strong></label>
+                    <span id="date" th:text="${#temporals.format(comment.creationDate, 'dd.MM.yyyy - HH:mm')}"></span>
+                </div>
+                <div>
+                    <label for="comment"><strong>Komentarz: </strong></label>
+                    <span id="comment" th:text="${comment.description}"></span>
+                </div>
         </div>
     </div>
 
