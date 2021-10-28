@@ -34,6 +34,14 @@
         <span id="description" th:text="${event.description}"></span>
     </div>
 
+    <div class="mt-2">
+        <strong>Użytkownicy zapisani na wydarzenie:</strong>
+    </div>
+    <div  th:each="participant: ${event.participants}">
+        <label for="participant">Nazwa użytkownika:</label>
+        <div id="participant" th:text="${participant.email}"></div>
+    </div>
+
     <div>
         <label for="comments"><strong>Komentarze: </strong></label>
         <div th:each="comment: ${comments}">
