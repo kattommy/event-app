@@ -6,8 +6,8 @@
 </head>
 <body>
 <nav th:fragment="myNavbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
-   <div class="container-fluid">
-      <a class="navbar-brand" href="#">HOME</a>
+   <div class=" container">
+      <a class="navbar-brand " href="#">HOME</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
 
             <li class="nav-item dropdown">
             <li class="nav-item">
-               <a class="nav-link active" aria-current="page" ></a>
+               <a class="nav-link active" aria-current="page"></a>
             </li>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
@@ -42,32 +42,27 @@
             <li class="nav-item">
                <a class="nav-link active" aria-current="page" th:href="@{/comments}">Komentarze</a>
             </li>
-            <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Autorzy projektu ;)
-               </a>
-               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Katarzyna</a></li>
-                  <li><a class="dropdown-item" href="#">Monika</a></li>
-                  <li><a class="dropdown-item" href="#">Jan</a></li>
-                  <li><a class="dropdown-item" href="#">Maciej</a></li>
-                  <li><a class="dropdown-item" href="#">Paweł</a></li>
-               </ul>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link disabled">Disabled</a>
-            </li>
          </ul>
-         <div sec:authorize="isAuthenticated()" class="d-flex">
-            Zalogowano jako&nbsp;<span sec:authentication="name"></span>
-            <form method="post" th:action="@{/logout}">
-               <button type="submit" class="btn btn-dark">Wyloguj</button>
-            </form>
-         </div>
       </div>
    </div>
-</nav>
 
+
+         <div class="d-flex">
+            <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+               <button type="submit" class="btn btn-dark">Wyloguj</button>
+               Zalogowano jako&nbsp;<span sec:authentication="name"></span>
+            </form>
+         </div>
+
+         <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" th:value="${events}" type="submit">Search</button>
+         </form>
+
+         <a sec:authorize="isAnonymous()" th:href="@{/login}" role="button" class="btn btn-dark">Zaloguj</a>
+         <a sec:authorize="isAnonymous()" th:href="@{/register}" role="button" class="btn btn-dark">Zarejestruj</a>
+
+
+</nav>
 </body>
 </html>

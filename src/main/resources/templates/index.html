@@ -5,7 +5,13 @@
 <!-- Navbar Section -->
 <nav th:replace="fragments/navbar :: myNavbar"></nav>
 
+
 <div class="container">
+   <div class="container-fluid alert alert-success alert-dismissible fade show" role="alert" th:if="${param.registered}">
+      <strong>Zarejestrowano użytkownika!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+
    <h1>Strona główna</h1>
    <p> Tak coś tu trzeba wystawić na stronie głównej tylko co ? Może Event info...opis?</p>
 

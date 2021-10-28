@@ -12,6 +12,7 @@
 <div th:each="event: ${eventsPast}" class="container p-5 my-5 border">
    <h2 th:text="${event.name}"></h2><br>
    <h2 th:text="${event.getDescription()}">   </h2>
+   <h2 th:text="${event.getOrganizer().firstName}">   </h2>
 </div>
 
 
