@@ -86,10 +86,17 @@ public class EventController {
         return "event/eventDetails";
     }
 
+    @GetMapping("/future")
+    public String getFutureEvents(Model model, @AuthenticationPrincipal User user) {
+        List<Event> futureEvents = eventService.getAllFutureEventsByUser(user);
+        model.addAttribute("futureEvents", futureEvents);
+        return "event/futureEvents";
+
     @PostMapping("/saveParticipant/forEvent/{eventId}")
     public String postSaveParticipant(@AuthenticationPrincipal User user, @PathVariable("eventId") Long eventId) {
         Event event = eventService.getById(eventId);
         eventService.saveParticipantForAnEvent(user, event);
         return "redirect:/events/eventDetails/" + eventId + "/?saved";
+
     }
 }
