@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Blad dyscuu')"></head>
+<body>
+<nav th:replace="fragments/navbar :: myNavbar"></nav>
+
+<div class="container-fluid border-danger">
+    <div class="text-danger text-lg-center display-4">Ups... Wystąpił błąd</div>
+    <div class="text-danger text-md-center display-3">
+        Przepraszamy najwielcej :)
+    </div>
+    <a th:href="@{/}" role="button" class="btn-primary btn-primary btn-sm"></a>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:replace="fragments/scripts :: scripts"></script>
+</body>
+</html>
