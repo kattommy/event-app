@@ -5,6 +5,7 @@ import com.project.eventapp.model.Event;
 import com.project.eventapp.model.User;
 import com.project.eventapp.service.CommentService;
 import com.project.eventapp.service.EventService;
+import com.project.eventapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class EventController {
 
     private final EventService eventService;
     private final CommentService commentService;
+    private final UserService userService;
 
     @GetMapping
     public String getEvents(Model model) {
@@ -74,16 +76,10 @@ public class EventController {
         eventService.deleteById(id);
         return new RedirectView("/events");
     }
-    //TODO fix me
-    @GetMapping("/participants/{id}")
-    public String getParticipants(@PathVariable("id")Long id){
-        eventService.getWithParticipantsById(id);
-        return "participants";
-    }
 
     @GetMapping("/eventDetails/{id}")
     public String getEventDetails(Model model, @PathVariable("id") Long id) {
-        Event eventToDisplay = eventService.getById(id);
+        Event eventToDisplay = eventService.getWithParticipantsById(id);
         model.addAttribute("event", eventToDisplay);
         List<Comment> allComments = commentService.findAllCommentsByEventsId(id);
         model.addAttribute("comments", allComments);
@@ -95,5 +91,12 @@ public class EventController {
         List<Event> futureEvents = eventService.getAllFutureEventsByUser(user);
         model.addAttribute("futureEvents", futureEvents);
         return "event/futureEvents";
+
+    @PostMapping("/saveParticipant/forEvent/{eventId}")
+    public String postSaveParticipant(@AuthenticationPrincipal User user, @PathVariable("eventId") Long eventId) {
+        Event event = eventService.getById(eventId);
+        eventService.saveParticipantForAnEvent(user, event);
+        return "redirect:/events/eventDetails/" + eventId + "/?saved";
+
     }
 }
