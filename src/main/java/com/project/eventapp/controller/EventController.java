@@ -91,6 +91,7 @@ public class EventController {
         List<Event> futureEvents = eventService.getAllFutureEventsByUser(user);
         model.addAttribute("futureEvents", futureEvents);
         return "event/futureEvents";
+    }
 
     @PostMapping("/saveParticipant/forEvent/{eventId}")
     public String postSaveParticipant(@AuthenticationPrincipal User user, @PathVariable("eventId") Long eventId) {
