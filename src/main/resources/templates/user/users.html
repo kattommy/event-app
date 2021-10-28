@@ -4,7 +4,7 @@
 
 <body>
 <nav th:replace="fragments/navbar :: myNavbar"></nav>
-
+<div class="container">
 <h1>Lista Użytkowników</h1>
 
 
@@ -35,6 +35,7 @@
 <span class="link">
 <a th:href="@{/users/addUser}">Dodaj użytkownika</a>
 </span>
+</div>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>

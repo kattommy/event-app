@@ -6,7 +6,9 @@
 <nav th:replace="fragments/navbar :: myNavbar" ></nav>
 
 <div class="container-fluid p-5 bg-info text-white text-center">
-    <h1>Lista dostępnych wydarzeń</h1>
+    <h1>Lista dostępnych wydarzeń
+        <th:block th:if="${param.name}">o nazwie: <strong th:text="${param.name}"></strong></th:block>
+    </h1>
 </div>
 
         <div th:each="event: ${events}" class="container p-5 my-5 border">

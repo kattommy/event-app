@@ -20,8 +20,13 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping
-    public String getEvents(Model model) {
-        List<Event> events = eventService.getAll();
+    public String getEvents(Model model, @RequestParam(required = false) String name) {
+        List<Event> events;
+        if (name != null) {
+            events = eventService.findEventByName(name);
+        } else {
+            events = eventService.getAll();
+        }
         model.addAttribute("events", events);
         return "event/events";
     }
@@ -71,9 +76,10 @@ public class EventController {
         eventService.deleteById(id);
         return new RedirectView("/events");
     }
+
     //TODO fix me
     @GetMapping("/participants/{id}")
-    public String getParticipants(@PathVariable("id")Long id){
+    public String getParticipants(@PathVariable("id") Long id) {
         return "participants";
     }
 

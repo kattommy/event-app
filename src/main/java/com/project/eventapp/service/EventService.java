@@ -8,12 +8,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class EventService {
     private final EventRepository repository;
-
 
     public List<Event> getAll() {
         return repository.findAll();
@@ -36,6 +36,9 @@ public class EventService {
                 .orElseThrow(() -> new RuntimeException("brak eventu"));
     }
 
+    public List<Event> findEventByName(String  name){
+        return  getAll().stream().filter(e->e.getName().equals(name)).collect(Collectors.toList());
+    }
 
     public List<Event> getAllPastByUser(User user) {
         return repository.findAllPastByUser(user);

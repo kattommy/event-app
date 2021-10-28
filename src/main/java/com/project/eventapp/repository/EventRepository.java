@@ -17,6 +17,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "WHERE p = :user AND e.endDateTime < current_time")
     List<Event> findAllPastByUser(@Param("user") User user);
 
+
+    List<Event> findEventByName(String  name);
+
     List<Event> findAllByOrganizer_Id(long id);
 
     Optional<Event> findWithParticipantsById(long id);

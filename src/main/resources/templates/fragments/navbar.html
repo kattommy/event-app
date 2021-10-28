@@ -54,10 +54,10 @@
             </form>
          </div>
 
-         <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" th:value="${events}" type="submit">Search</button>
-         </form>
+   <form class="d-flex" method="get">
+      <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-dark" type="submit">Znajdź</button>
+   </form><br>
 
          <a sec:authorize="isAnonymous()" th:href="@{/login}" role="button" class="btn btn-dark">Zaloguj</a>
          <a sec:authorize="isAnonymous()" th:href="@{/register}" role="button" class="btn btn-dark">Zarejestruj</a>
