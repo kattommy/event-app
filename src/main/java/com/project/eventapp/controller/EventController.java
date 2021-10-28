@@ -89,4 +89,11 @@ public class EventController {
         model.addAttribute("comments", allComments);
         return "event/eventDetails";
     }
+
+    @GetMapping("/future")
+    public String getFutureEvents(Model model, @AuthenticationPrincipal User user) {
+        List<Event> futureEvents = eventService.getAllFutureEventsByUser(user);
+        model.addAttribute("futureEvents", futureEvents);
+        return "event/futureEvents";
+    }
 }

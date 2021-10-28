@@ -40,4 +40,8 @@ public class EventService {
     public List<Event> getAllPastByUser(User user) {
         return repository.findAllPastByUser(user);
     }
+
+    public List<Event> getAllFutureEventsByUser(User user){
+        return repository.findAllFutureEventsByUser(user);
+    }
 }
