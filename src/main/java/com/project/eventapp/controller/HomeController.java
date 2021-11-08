@@ -13,9 +13,9 @@ public class HomeController {
 
     private UserService userService;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String getLogin() {
-        return "login";
+        return "index";
     }
 
     @GetMapping("/register")

@@ -1,11 +1,8 @@
 package com.project.eventapp.service;
 
-import com.project.eventapp.model.Event;
 import com.project.eventapp.model.User;
 import com.project.eventapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
 //  (po skończeniu zapisów na event)
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
 
@@ -42,8 +39,8 @@ public class UserService implements UserDetailsService {
     }
 
 
-    @Override
-    public User loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Brak użytkownika o email: " + email));
-    }
+//    @Override
+//    public User loadUserByUsername(String email) throws UsernameNotFoundException {
+//        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Brak użytkownika o email: " + email));
+//    }
 }

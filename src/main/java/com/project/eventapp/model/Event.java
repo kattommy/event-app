@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ public class Event {
     private Long id;
 
     @Column(length = 100)
+    @Size(min = 3 , message = "nazwa musi zawierać co najmniej {min} znaki")
     private String name;
 
     private LocalDateTime startDateTime;
