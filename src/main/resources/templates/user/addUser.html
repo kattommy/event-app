@@ -2,36 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Dodawanie użytkownka')"></head>
 <body>
-<nav th:replace="fragments/navbar :: myNavbar" ></nav>
-<h1>Dodanie użytkownika</h1>
-<form method="post">
-   <div class="input-group mb-3">
-      <span class="input-group-text" id="firstName">Imie</span>
-      <input type="text" name="firstName" class="form-control" aria-label="Sizing example input"
-             aria-describedby="inputGroup-sizing-default">
-   </div>
-   <div class="input-group mb-3">
-      <span class="input-group-text" id="lastName">Nazwisko</span>
-      <input type="text" name="lastName" class="form-control" aria-label="Sizing example input"
-             aria-describedby="inputGroup-sizing-default">
-   </div>
-   <div class="input-group mb-3">
-      <span class="input-group-text" id="email">Email</span>
-      <input type="text" name="email" class="form-control" aria-label="Sizing example input"
-             aria-describedby="inputGroup-sizing-default">
-   </div>
-   <div class="input-group mb-3">
-      <span class="input-group-text" id="password">Hasło</span>
-      <input type="text" name="password" class="form-control" aria-label="Sizing example input"
-             aria-describedby="inputGroup-sizing-default">
-   </div>
-   <button type="submit" class="btn btn-primary">Dodaj</button>
-</form>
-<hr>
-<span class="link">
+<nav th:replace="fragments/navbar :: myNavbar"></nav>
+<div class="container">
+   <h1 th:text="#{usersAdd.title}"></h1>
+   <form method="post" th:object="${user}">
+      <div>
+         <label class="form-label" for="firstName">Imie</label>
+         <input type="text" id="firstName" name="firstName" class="form-control"
+                th:field="*{firstName}" th:classappend="${#fields.hasErrors()?
+      (#fields.hasErrors('firstName')? 'is-invalid': 'is-valid'):''}">
+         <div class="invalid-feedback" th:errors="*{firstName}"></div>
+      </div>
+      <div>
+         <label class="form-label" for="lastName">Nazwisko</label>
+         <input type="text" id="lastName" name="lastName" class="form-control"
+                th:field="*{lastName}" th:classappend="${#fields.hasErrors()?
+      (#fields.hasErrors('lastName')? 'is-invalid': 'is-valid'):''}">
+         <div class="invalid-feedback" th:errors="*{lastName}"></div>
+      </div>
+      <div>
+         <label class="input-group-text" for="email">Email</label>
+         <input type="text" id="email" name="email" class="form-control"
+                th:field="*{email}" th:classappend="${#fields.hasErrors()?
+      (#fields.hasErrors('email')? 'is-invalid': 'is-valid'):''}">
+         <div class="invalid-feedback" th:errors="*{email}"></div>
+      </div>
+      <div>
+         <label class="input-group-text" for="password">Hasło</label>
+         <input type="text" id="password" name="password" class="form-control"
+                th:field="*{password}" th:classappend="${#fields.hasErrors()?
+      (#fields.hasErrors('password')? 'is-invalid': 'is-valid'):''}">
+         <div class="invalid-feedback" th:errors="*{password}"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">Dodaj</button>
+   </form>
+   <hr>
+   <span class="link">
 <a th:href="@{/users}">Lista użytkowników</a>
 </span>
-<footer th:replace="fragments/footer :: footer"></footer>
-<script th:replace="fragments/scripts :: scripts"></script>
+</div>
+   <footer th:replace="fragments/footer :: footer"></footer>
+   <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

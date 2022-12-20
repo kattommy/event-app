@@ -6,6 +6,8 @@ import com.project.eventapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -26,14 +28,17 @@ public class UserController {
     }
 
     @GetMapping("/addUser")
-    public String getAddUser() {
+    public String getAddUser(@ModelAttribute User user) {
         return "user/addUser";
     }
 
     @PostMapping("/addUser")
-    public RedirectView postAddUser(@ModelAttribute("user") User user) {
+    public String postAddUser(@Validated @ModelAttribute("user") User user, BindingResult bindingResult) {
+       if(bindingResult.hasErrors()){
+           return "user/addUser";
+       }
         userService.createUser(user);
-        return new RedirectView("/users");
+        return "user/users";
     }
 
     @GetMapping("/editUser/{id}")
